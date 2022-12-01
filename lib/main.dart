@@ -1,14 +1,16 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:film_critic_app/src/ui/pages/homepage_screen.dart';
+import 'package:film_critic_app/src/ui/pages/on_board_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 void main() {
-  runApp(MultiProvider(providers: [
+  runApp(MyApp()
+      /* MultiProvider(providers: [
     //ChangeNotifierProvider(create: (context) => SearchListProvider())
-  ]));
+  ] */
+      );
 }
 
 class MyApp extends StatelessWidget {
@@ -19,6 +21,7 @@ class MyApp extends StatelessWidget {
     return ResponsiveSizer(
       builder: (context, orientation, screenType) {
         return MaterialApp(
+            debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
             theme: ThemeData(
               appBarTheme: AppBarTheme(
@@ -26,7 +29,7 @@ class MyApp extends StatelessWidget {
               scaffoldBackgroundColor: Color(0xff21222E),
               primarySwatch: Colors.blue,
             ),
-            home: HomepageScreen());
+            home: OnBoardScreen());
       },
     );
   }
