@@ -38,33 +38,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
             SizedBox(
               height: 30.h,
             ),
-            //RandomFilmListListview()
-            Consumer<TopRatedFilmsProvider>(
-              builder: (context, value, widget) {
-                return Container(
-                  width: 100.w,
-                  height: 60.h,
-                  child: ListView.builder(
-                    itemCount: 4,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        height: 40.h,
-                        width: 40.w,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: NetworkImage(""
-                                    //value.topfilms.results[index].
-
-                                    ))),
-                        child: Text(
-                            value.topfilms.results![index].title.toString()),
-                      );
-                    },
-                  ),
-                );
-              },
-            )
+            RandomFilmListListview()
           ],
         )),
       ),

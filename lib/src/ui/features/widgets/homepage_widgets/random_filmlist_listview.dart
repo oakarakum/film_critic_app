@@ -19,14 +19,6 @@ class _RandomFilmListListviewState extends State<RandomFilmListListview> {
   TopRatedFilmsProvider? data;
 
   @override
-  void initState() {
-    data = Provider.of<TopRatedFilmsProvider>(context, listen: false);
-    data!.getTopRatedFilms();
-
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Consumer<TopRatedFilmsProvider>(
       builder: (context, value, widget) {
