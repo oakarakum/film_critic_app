@@ -1,5 +1,6 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
+import 'package:film_critic_app/src/ui/features/widgets/homepage_widgets/search_and_profile_upbar.dart';
 import 'package:flutter/material.dart';
 
 class HomepageScreen extends StatefulWidget {
@@ -18,7 +19,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
         padding: EdgeInsets.symmetric(horizontal: 20),
         child: SingleChildScrollView(
             child: Column(
-          children: [],
+          children: [SearchandProfileUpbar()],
         )),
       ),
     );
