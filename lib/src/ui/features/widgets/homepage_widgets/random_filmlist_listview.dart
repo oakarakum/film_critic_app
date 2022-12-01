@@ -1,7 +1,12 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:animate_do/animate_do.dart';
 import 'package:film_critic_app/src/services/homepage_services.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+
+import '../../../../providers/top_rated_films_provider.dart';
 
 class RandomFilmListListview extends StatefulWidget {
   const RandomFilmListListview({super.key});
@@ -11,54 +16,42 @@ class RandomFilmListListview extends StatefulWidget {
 }
 
 class _RandomFilmListListviewState extends State<RandomFilmListListview> {
+  TopRatedFilmsProvider? data;
+
+  @override
+  void initState() {
+    data = Provider.of<TopRatedFilmsProvider>(context, listen: false);
+    data!.getTopRatedFilms();
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 26.h,
-      width: double.infinity,
-      child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: 3,
-          itemBuilder: ((context, index) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                FadeInRightBig(
-                  delay: Duration(seconds: 1),
-                  child: GestureDetector(
-                    onTap: () {
-                      /* print(value.favArtAlbumlist.items![index].id
-                          ); */
-                      /* Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => AlbumTracksScreen(
-                                    id: value.favArtAlbumlist.items![index].id
-                                        .toString(),
-                                  ))
-                                  ); */
-                    },
-                  ),
-                ),
-                SizedBox(height: 1.h),
-                FadeInUp(
-                  delay: Duration(seconds: 1),
-                  child: Padding(
-                    padding: EdgeInsets.only(right: 4.w),
-                    child: Text(
-                      "",
-                      //value.favArtAlbumlist.items![index].name.toString(),
-                      style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 2.h,
-                          color: Color(0xff3A3A3A)),
-                    ),
-                  ),
-                )
-              ],
-            );
-          })),
+    return Consumer<TopRatedFilmsProvider>(
+      builder: (context, value, widget) {
+        return SizedBox(
+          height: 25.h,
+          width: 100.w,
+          child: ListView.builder(
+            itemCount: 4,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return Container(
+                height: 40.h,
+                width: 40.w,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: NetworkImage(""
+                            //value.topfilms.results[index].
+
+                            ))),
+                child: Text(value.topfilms.results![index].title.toString()),
+              );
+            },
+          ),
+        );
+      },
     );
   }
 }
