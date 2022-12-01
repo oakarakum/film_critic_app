@@ -12,12 +12,6 @@ class RandomFilmListListview extends StatefulWidget {
 
 class _RandomFilmListListviewState extends State<RandomFilmListListview> {
   @override
-  void initState() {
-    getTopRatedFilmsService();
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 26.h,
