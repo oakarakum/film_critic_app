@@ -1,7 +1,7 @@
 // ignore_for_file: sort_child_properties_last
 
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:film_critic_app/src/providers/popular_films_provider.dart';
+import 'package:film_critic_app/src/providers/homepage_providers/popular_films_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';

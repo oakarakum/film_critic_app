@@ -22,19 +22,32 @@ class _SearchandProfileUpbarState extends State<SearchandProfileUpbar> {
       width: 100.w,
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("Bugün ne izlemek istersin?"),
-              CircleAvatar(
-                radius: 3.5.h,
-                foregroundImage: AssetImage(
-                  "assets/circle-profile-picture.png",
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 1.h),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 6.5.h,
+                  width: 60.w,
+                  child: Text(
+                    "What would you like to watch today?",
+                    style: GoogleFonts.abhayaLibre(
+                        fontSize: 3.h,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white),
+                  ),
                 ),
-                backgroundColor: Colors.white,
-              )
-            ],
+                CircleAvatar(
+                  radius: 3.5.h,
+                  foregroundImage: AssetImage(
+                    "assets/circle-profile-picture.png",
+                  ),
+                  backgroundColor: Colors.white,
+                )
+              ],
+            ),
           ),
           Padding(
             padding: EdgeInsets.only(top: 1.5.h),
@@ -43,16 +56,23 @@ class _SearchandProfileUpbarState extends State<SearchandProfileUpbar> {
                 cursorHeight: 2.w,
                 cursorColor: Colors.white,
                 decoration: InputDecoration(
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 5.w, vertical: 10),
                     hintText: "Search",
-                    hintStyle:
-                        GoogleFonts.abhayaLibre(color: Color(0xffFFFFFF)),
-                    suffixIcon: Icon(
-                      Icons.search,
-                      color: Color(0xffFFFFFF),
+                    hintStyle: GoogleFonts.abhayaLibre(
+                        color: Color(0xffFFFFFF), fontSize: 2.5.h),
+                    suffixIcon: Padding(
+                      padding: EdgeInsets.only(right: 5.w),
+                      child: Icon(
+                        Icons.search,
+                        color: Color(0xffFFFFFF),
+                      ),
                     ),
                     fillColor: Color(0xff36076B),
+                    filled: true,
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.w)),
                     enabledBorder: OutlineInputBorder(
-                        gapPadding: 3.1.w,
                         borderRadius: BorderRadius.circular(10.w)))),
           )
         ],

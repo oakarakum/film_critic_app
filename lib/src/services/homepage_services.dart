@@ -2,8 +2,8 @@
 
 import 'package:dio/dio.dart';
 
-import '../models/popular_films_model.dart';
-import '../models/top_rated_films_model.dart';
+import '../models/homepage_models/popular_films_model.dart';
+import '../models/homepage_models/top_rated_films_model.dart';
 
 final Dio _dio = Dio(BaseOptions(
   baseUrl: "https://api.themoviedb.org/3/movie/",
@@ -51,7 +51,7 @@ Future<PopularFilmsModel?> getPopularFilmsServices() async {
           "page": 1
         });
     popularfilmlist = PopularFilmsModel.fromJson(response.data);
-    print(response.data);
+    // print(response.data);
     if (response.statusCode == 200) {
       print("Popular Çalışıyor");
     } else {

@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, sized_box_for_whitespace, prefer_const_constructors
 
-import 'package:film_critic_app/src/providers/popular_films_provider.dart';
-import 'package:film_critic_app/src/providers/top_rated_films_provider.dart';
+import 'package:film_critic_app/src/providers/homepage_providers/popular_films_provider.dart';
+import 'package:film_critic_app/src/providers/homepage_providers/top_rated_films_provider.dart';
 import 'package:film_critic_app/src/ui/features/widgets/homepage_widgets/popular_movies_listview.dart';
 import 'package:film_critic_app/src/ui/features/widgets/homepage_widgets/random_filmlist_listview.dart';
 import 'package:film_critic_app/src/ui/features/widgets/homepage_widgets/search_and_profile_upbar.dart';
@@ -54,6 +54,10 @@ class _HomepageScreenState extends State<HomepageScreen> {
                   padding: EdgeInsets.symmetric(horizontal: 5.w),
                   child: Column(
                     children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 1.h),
+                        child: SearchandProfileUpbar(),
+                      ),
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: 1.h),
                         child: RandomFilmListListview(),
