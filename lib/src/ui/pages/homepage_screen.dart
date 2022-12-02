@@ -1,9 +1,10 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, sized_box_for_whitespace, prefer_const_constructors
 
-import 'package:film_critic_app/src/models/top_rated_films_model.dart';
+import 'package:film_critic_app/src/providers/popular_films_provider.dart';
 import 'package:film_critic_app/src/providers/top_rated_films_provider.dart';
-import 'package:film_critic_app/src/services/homepage_services.dart';
+import 'package:film_critic_app/src/ui/features/widgets/homepage_widgets/popular_movies_listview.dart';
 import 'package:film_critic_app/src/ui/features/widgets/homepage_widgets/random_filmlist_listview.dart';
+import 'package:film_critic_app/src/ui/features/widgets/homepage_widgets/search_and_profile_upbar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -23,6 +24,10 @@ class _HomepageScreenState extends State<HomepageScreen> {
     //Random Listview's data
     data = Provider.of<TopRatedFilmsProvider>(context, listen: false);
     data!.getTopRatedFilms();
+    //Popular films ListView's data
+    PopularFilmsProvider data2 =
+        Provider.of<PopularFilmsProvider>(context, listen: false);
+    data2.getPopularFilms();
     super.initState();
   }
 
@@ -38,7 +43,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
         child: Column(
           children: [
             Container(
-              height: 70.h,
+              height: 100.h,
               width: 100.w,
               decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -52,6 +57,10 @@ class _HomepageScreenState extends State<HomepageScreen> {
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: 1.h),
                         child: RandomFilmListListview(),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 1.h),
+                        child: PopularMovies(),
                       )
                     ],
                   )),
