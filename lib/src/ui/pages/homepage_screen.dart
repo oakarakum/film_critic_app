@@ -1,6 +1,12 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_literals_to_create_immutables, sized_box_for_whitespace, prefer_const_constructors
 
+import 'package:film_critic_app/src/models/top_rated_films_model.dart';
+import 'package:film_critic_app/src/providers/top_rated_films_provider.dart';
+import 'package:film_critic_app/src/services/homepage_services.dart';
+import 'package:film_critic_app/src/ui/features/widgets/homepage_widgets/random_filmlist_listview.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class HomepageScreen extends StatefulWidget {
   const HomepageScreen({super.key});
@@ -10,16 +16,48 @@ class HomepageScreen extends StatefulWidget {
 }
 
 class _HomepageScreenState extends State<HomepageScreen> {
+  TopRatedFilmsProvider? data;
+
+  @override
+  void initState() {
+    //Random Listview's data
+    data = Provider.of<TopRatedFilmsProvider>(context, listen: false);
+    data!.getTopRatedFilms();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        child: SingleChildScrollView(
-            child: Column(
-          children: [],
-        )),
+      backgroundColor: Color(0xff000000),
+      appBar: AppBar(
+        toolbarHeight: 0,
+        backgroundColor: Colors.black,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: 70.h,
+              width: 100.w,
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: [Color(0xff8000FF), Color(0xff000000)],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter)),
+              child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 5.w),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 1.h),
+                        child: RandomFilmListListview(),
+                      )
+                    ],
+                  )),
+            ),
+          ],
+        ),
       ),
     );
   }
