@@ -36,8 +36,9 @@ class _RandomFilmListListviewState extends State<RandomFilmListListview> {
                   Container(
                     height: 20.h,
                     width: 30.w,
-                    margin: EdgeInsets.only(right: 5.w),
+                    margin: EdgeInsets.only(right: 4.5.w),
                     decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(.8.h),
                         image: DecorationImage(
                             image: NetworkImage(
                                 "https://image.tmdb.org/t/p/w600_and_h900_bestv2/${value.topfilms.results![index].posterPath!}"
