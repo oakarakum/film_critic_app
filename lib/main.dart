@@ -1,20 +1,17 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:film_critic_app/src/providers/popular_films_provider.dart';
 import 'package:film_critic_app/src/providers/top_rated_films_provider.dart';
 import 'package:film_critic_app/src/ui/pages/homepage_screen.dart';
-import 'package:film_critic_app/src/ui/pages/on_board_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(create: ((context) => TopRatedFilmsProvider())),
-  ], child: MyApp())
-      /* MultiProvider(providers: [
-    //ChangeNotifierProvider(create: (context) => SearchListProvider())
-  ] */
-      );
+    ChangeNotifierProvider(create: (context) => TopRatedFilmsProvider()),
+    ChangeNotifierProvider(create: (context) => PopularFilmsProvider())
+  ], child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
