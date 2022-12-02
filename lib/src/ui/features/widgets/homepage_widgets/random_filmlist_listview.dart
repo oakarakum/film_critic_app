@@ -25,7 +25,7 @@ class _RandomFilmListListviewState extends State<RandomFilmListListview> {
     return Consumer<TopRatedFilmsProvider>(
       builder: (context, value, widget) {
         return SizedBox(
-          height: 34.h,
+          height: 29.h,
           width: 100.w,
           child: ListView.builder(
             itemCount: 4,
@@ -36,11 +36,13 @@ class _RandomFilmListListviewState extends State<RandomFilmListListview> {
                   Container(
                     height: 20.h,
                     width: 30.w,
+                    margin: EdgeInsets.only(right: 5.w),
                     decoration: BoxDecoration(
                         image: DecorationImage(
                             image: NetworkImage(
                                 "https://image.tmdb.org/t/p/w600_and_h900_bestv2/${value.topfilms.results![index].posterPath!}"
-                                    .toString()))),
+                                    .toString()),
+                            fit: BoxFit.fitWidth)),
                   ),
                   Container(
                     margin: EdgeInsets.only(top: 1.h),
