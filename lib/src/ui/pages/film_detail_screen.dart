@@ -19,7 +19,8 @@ class _FilmDetailScreenState extends State<FilmDetailScreen> {
     //Film sayfasını değiştiren
     DetailPickedFilmsProvider? data3;
     data3 = Provider.of<DetailPickedFilmsProvider>(context, listen: false);
-    data3.getDetailedPickedFilms();
+    //data3.getDetailedPickedFilms();
+    data3.getChange(widget.movie_id);
 
     // print(widget.movie_id);
     super.initState();

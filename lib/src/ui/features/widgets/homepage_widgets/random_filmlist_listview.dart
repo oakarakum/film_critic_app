@@ -35,36 +35,29 @@ class _RandomFilmListListviewState extends State<RandomFilmListListview> {
             itemBuilder: (context, index) {
               return Column(
                 children: [
-                  Consumer(
-                    builder: (context, DetailPickedFilmsProvider detailprovider,
-                        child) {
-                      return GestureDetector(
-                        onTap: () {
-                          detailprovider
-                              .getChange(value.topfilms.results![index].id!);
-                          //print(value.topfilms.results![index].id!);
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => FilmDetailScreen(
-                                      movie_id: detailprovider.movie_id
-                                      // value.topfilms.results![index].id!,
-                                      )));
-                        },
-                        child: Container(
-                          height: 20.h,
-                          width: 30.w,
-                          margin: EdgeInsets.only(right: 4.5.w),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(.8.h),
-                              image: DecorationImage(
-                                  image: NetworkImage(
-                                      "https://image.tmdb.org/t/p/w600_and_h900_bestv2/${value.topfilms.results![index].posterPath!}"
-                                          .toString()),
-                                  fit: BoxFit.fitWidth)),
-                        ),
-                      );
+                  GestureDetector(
+                    onTap: () {
+                      //print(value.topfilms.results![index].id!);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FilmDetailScreen(
+                                    movie_id:
+                                        value.topfilms.results![index].id!,
+                                  )));
                     },
+                    child: Container(
+                      height: 20.h,
+                      width: 30.w,
+                      margin: EdgeInsets.only(right: 4.5.w),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(.8.h),
+                          image: DecorationImage(
+                              image: NetworkImage(
+                                  "https://image.tmdb.org/t/p/w600_and_h900_bestv2/${value.topfilms.results![index].posterPath!}"
+                                      .toString()),
+                              fit: BoxFit.fitWidth)),
+                    ),
                   ),
                   Container(
                     margin: EdgeInsets.only(top: 1.h),
