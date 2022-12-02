@@ -20,27 +20,44 @@ class _HomepageScreenState extends State<HomepageScreen> {
 
   @override
   void initState() {
+    //Random Listview's data
     data = Provider.of<TopRatedFilmsProvider>(context, listen: false);
     data!.getTopRatedFilms();
-
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        child: SingleChildScrollView(
-            child: Column(
+      backgroundColor: Color(0xff000000),
+      appBar: AppBar(
+        toolbarHeight: 0,
+        backgroundColor: Colors.black,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
           children: [
-            SizedBox(
-              height: 30.h,
+            Container(
+              height: 70.h,
+              width: 100.w,
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: [Color(0xff8000FF), Color(0xff000000)],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter)),
+              child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 5.w),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 1.h),
+                        child: RandomFilmListListview(),
+                      )
+                    ],
+                  )),
             ),
-            RandomFilmListListview()
           ],
-        )),
+        ),
       ),
     );
   }
