@@ -7,6 +7,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../../../pages/film_detail_screen.dart';
+
 class PopularMovies extends StatefulWidget {
   const PopularMovies({super.key});
 
@@ -30,17 +32,30 @@ class _PopularMoviesState extends State<PopularMovies> {
                   itemBuilder: (context, index) {
                     return Column(
                       children: [
-                        Container(
-                          height: 20.h,
-                          width: 30.w,
-                          margin: EdgeInsets.only(right: 4.5.w),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(.8.h),
-                              image: DecorationImage(
-                                  image: NetworkImage(
-                                      "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${value.popularfilms!.results![index].posterPath}"
-                                          .toString()),
-                                  fit: BoxFit.fitWidth)),
+                        GestureDetector(
+                          onTap: () {
+                      //print(value.topfilms.results![index].id!);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FilmDetailScreen(
+                                    movie_id:
+                                        //value.topfilms.results![index].id!,
+                                        value.popularfilms!.results![index].id!
+                                  )));
+                    },
+                          child: Container(
+                            height: 20.h,
+                            width: 30.w,
+                            margin: EdgeInsets.only(right: 4.5.w),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(.8.h),
+                                image: DecorationImage(
+                                    image: NetworkImage(
+                                        "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${value.popularfilms!.results![index].posterPath}"
+                                            .toString()),
+                                    fit: BoxFit.fitWidth)),
+                          ),
                         ),
                         Container(
                           margin: EdgeInsets.only(top: 1.h),
