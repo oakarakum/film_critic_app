@@ -44,7 +44,10 @@ class _FilmDetailScreenState extends State<FilmDetailScreen> {
           toolbarHeight: 0,
           backgroundColor: Color(0xff303243),
         ),
-        body: Container(
+        body: Consumer<DetailPickedFilmsProvider>(builder: (context, value, child) {
+          return  value.isPickedFilmLoaded == true
+          
+         ? Container(
           height: 100.h,
           width: 100.w,
           decoration: BoxDecoration(
@@ -53,18 +56,16 @@ class _FilmDetailScreenState extends State<FilmDetailScreen> {
             Color(0xff15151D),
           ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
           child: SingleChildScrollView(
-            child: Consumer<DetailPickedFilmsProvider>(
-                builder: (context, value, child) {
-              return Column(children: [
-                value.movie_id != null
-                    ? Container(
+            child:  Column(
+              children: [
+                     Container(
                         height: 50.h,
                         width: 100.w,
                         decoration: BoxDecoration(
                             image: DecorationImage(
                                 image: NetworkImage(
                                     "https://www.themoviedb.org/t/p/w600_and_h900_bestv2${value.pickedfilms2.backdropPath}"),
-                                fit: BoxFit.cover)),
+                                fit: BoxFit.fill)),
                         child: Padding(
                           padding: EdgeInsets.only(bottom: 43.h, left: 5.w),
                           child: Row(
@@ -100,13 +101,7 @@ class _FilmDetailScreenState extends State<FilmDetailScreen> {
                           ),
                         ),
                       )
-                    : Shimmer.fromColors(
-                        child: SizedBox(
-                          height: 50.h,
-                          width: 100.w,
-                        ),
-                        baseColor: Colors.grey,
-                        highlightColor: Colors.white),
+                   ,
                 Padding(
                   //Resmin altının column'ı
                   padding: EdgeInsets.only(left: 5.w, right: 5.w, top: 1.h),
@@ -123,7 +118,7 @@ class _FilmDetailScreenState extends State<FilmDetailScreen> {
                             arcType: ArcType.FULL,
                             progressColor: Color(0xffFF1F8A),
                             percent:
-                                (value.pickedfilms2.voteAverage * 10) / 100,
+                                ( value.pickedfilms2.voteAverage * 10 ) / 100,
                             center: Center(
                                 child: Text(
                               "${value.pickedfilms2.voteAverage.toStringAsFixed(1)}/10",
@@ -139,42 +134,34 @@ class _FilmDetailScreenState extends State<FilmDetailScreen> {
                           FittedBox(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      "${value.pickedfilms2.title} ",
-                                      overflow: TextOverflow.ellipsis,
-                                      style: GoogleFonts.eagleLake(
-                                          fontSize: 2.h,
-                                          fontWeight: FontWeight.w600,
-                                          color: Color(0xffFFFFFF)),
-                                    ),
-                                    Text(
-                                        "(${value.pickedfilms2.releaseDate}"
-                                            .substring(0, 5),
-                                        style: GoogleFonts.eagleLake(
-                                            fontSize: 2.h,
-                                            fontWeight: FontWeight.w600,
-                                            color: Color(0xffFFFFFF))),
-                                    Text(")",
-                                        style: GoogleFonts.eagleLake(
-                                            fontSize: 2.h,
-                                            fontWeight: FontWeight.w600,
-                                            color: Color(0xffFFFFFF)))
-                                  ],
+                                SizedBox(
+                                  width: 69.w,
+                                  child: AutoSizeText(
+                                    "${value.pickedfilms2.title} ",
+                                    overflow: TextOverflow.ellipsis,
+                                    style: GoogleFonts.eagleLake(
+                                        fontSize: 2.h,
+                                        fontWeight: FontWeight.w600,
+                                        color: Color(0xffFFFFFF)),
+                                  ),
                                 ),
+
                                 //adadadad
                                 value.pickedfilms2.originalLanguage != "en"
                                     ? Row(
                                         // Ülkesinde farklı isimle yayınlanmışsa
                                         children: [
-                                          Text(
-                                              "Original Film Name: ${value.pickedfilms2.originalTitle} ",
-                                              style: GoogleFonts.eagleLake(
-                                                  fontSize: 1.6.h,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: Color(0xffFFFFFF))),
+                                          SizedBox(
+                                            width: 60.w,
+                                            child: Text(
+                                                "Original Film Name: ${value.pickedfilms2.originalTitle} ",
+                                                style: GoogleFonts.eagleLake(
+                                                    fontSize: 1.6.h,
+                                                    fontWeight: FontWeight.w600,
+                                                    color: Color(0xffFFFFFF))),
+                                          ),
                                         ],
                                       )
                                     : SizedBox(height: 1.h),
@@ -352,8 +339,7 @@ class _FilmDetailScreenState extends State<FilmDetailScreen> {
                                     borderRadius: BorderRadius.circular(5.w)),
                                 child: Center(
                                   child: Padding(
-                                    padding:
-                                        EdgeInsets.only( top: .3.h),
+                                    padding: EdgeInsets.only(top: .3.h),
                                     child: Text(
                                         value.pickedfilms2.genres![index].name
                                             .toString(),
@@ -373,28 +359,18 @@ class _FilmDetailScreenState extends State<FilmDetailScreen> {
                   ),
                 ),
 
-                /* Consumer<DetailPickedFilmsProvider>(
-                    builder: (context, value, child) {
-                      return Text(
-                        value.movie_id.toString(),
-                        style: TextStyle(color: Colors.white),
-                      );
-                    },
-                  ), */
-                /*    Consumer<DetailPickedFilmsProvider>(
-                    builder: (context, value, child) {
-                      return Text(
-                        value.pickedfilms2.title.toString(),
-                        style: TextStyle(color: Colors.white),
-                      );
-                    },
-                  ) */
-
-                /* Image.network(
-                          "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${value.pickedfilms2.backdropPath!}") */
-              ]);
-            }),
+              ])
+            
           ),
-        ));
+        ): Shimmer.fromColors(child: Container(
+          height: 100.h,
+          width: 100.w,
+          color: Color(0xff303243),
+        ),
+         baseColor: Colors.grey,
+          highlightColor: Colors.white)
+        ;
+        },)
+        );
   }
 }

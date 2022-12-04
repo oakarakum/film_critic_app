@@ -1,9 +1,8 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
-import 'package:flutter/cupertino.dart';
+import 'package:film_critic_app/src/ui/pages/search_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -18,7 +17,7 @@ class _SearchandProfileUpbarState extends State<SearchandProfileUpbar> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 20.h,
+      height: 18.h,
       width: 100.w,
       child: Column(
         children: [
@@ -52,7 +51,10 @@ class _SearchandProfileUpbarState extends State<SearchandProfileUpbar> {
           Padding(
             padding: EdgeInsets.only(top: 1.5.h),
             child: TextFormField(
-                onTap: () {},
+                onTap: () {
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => SearchScreen()));
+
+                },
                 cursorHeight: 2.w,
                 cursorColor: Colors.white,
                 decoration: InputDecoration(

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../pages/film_detail_screen.dart';
 
@@ -44,7 +45,8 @@ class _PopularMoviesState extends State<PopularMovies> {
                                         value.popularfilms!.results![index].id!
                                   )));
                     },
-                          child: Container(
+                          child: value.isPopularFilmsLoaded == true
+                          ? Container(
                             height: 20.h,
                             width: 30.w,
                             margin: EdgeInsets.only(right: 4.5.w),
@@ -55,12 +57,22 @@ class _PopularMoviesState extends State<PopularMovies> {
                                         "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${value.popularfilms!.results![index].posterPath}"
                                             .toString()),
                                     fit: BoxFit.fitWidth)),
+                          ): Shimmer.fromColors(
+                          child: Container(
+                            height: 20.h,
+                            width: 30.w,
+                            margin: EdgeInsets.only(right: 2.w),
+                            color: Colors.purple,
                           ),
+                          baseColor: Colors.grey,
+                          highlightColor: Colors.white)
+                          ,
                         ),
-                        Container(
-                          margin: EdgeInsets.only(top: 1.h),
+                        value.isPopularFilmsLoaded == true
+                        ? Container(
+                          margin: EdgeInsets.only(top: 1.h,right: 3.w),
                           height: 8.h,
-                          width: 18.w,
+                          width: 22.w,
                           child: AutoSizeText(
                             maxLines: 3,
                             value.popularfilms!.results![index].originalTitle
@@ -70,7 +82,15 @@ class _PopularMoviesState extends State<PopularMovies> {
                                 fontSize: 2.h,
                                 fontWeight: FontWeight.w500),
                           ),
-                        )
+                        ): Shimmer.fromColors(
+                          child: Container(
+                            margin: EdgeInsets.only(top: 1.h),
+                          height: 2.h,
+                          width: 18.w,
+                            color: Colors.purple,
+                          ),
+                          baseColor: Colors.grey,
+                          highlightColor: Colors.white)
                       ],
                     );
                   },
