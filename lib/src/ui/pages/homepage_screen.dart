@@ -6,6 +6,7 @@ import 'package:film_critic_app/src/ui/features/widgets/homepage_widgets/popular
 import 'package:film_critic_app/src/ui/features/widgets/homepage_widgets/random_filmlist_listview.dart';
 import 'package:film_critic_app/src/ui/features/widgets/homepage_widgets/search_and_profile_upbar.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -58,9 +59,50 @@ class _HomepageScreenState extends State<HomepageScreen> {
                         padding: EdgeInsets.symmetric(vertical: 1.h),
                         child: SearchandProfileUpbar(),
                       ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text("Top Rated Films",
+                              style: GoogleFonts.abhayaLibre(
+                                  color: Colors.white,
+                                  fontSize: 3.h,
+                                  fontWeight: FontWeight.w500)),
+                          GestureDetector(
+                            onTap: () {
+                              
+                            },
+                            child: Text(
+                              "See More",
+                              style: GoogleFonts.abhayaLibre(
+                                  color: Colors.white,
+                                  fontSize: 2.5.h,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          )
+                        ],
+                      ),
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: 1.h),
                         child: RandomFilmListListview(),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text("Popular Films Films",
+                              style: GoogleFonts.abhayaLibre(
+                                  color: Colors.white,
+                                  fontSize: 3.h,
+                                  fontWeight: FontWeight.w500)),
+                          GestureDetector(
+                            child: Text(
+                              "See More",
+                              style: GoogleFonts.abhayaLibre(
+                                  color: Colors.white,
+                                  fontSize: 2.5.h,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          )
+                        ],
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: 1.h),
