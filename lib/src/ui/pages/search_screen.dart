@@ -4,6 +4,7 @@ import 'package:film_critic_app/src/providers/search_page_providers/search_provi
 import 'package:film_critic_app/src/services/searchpage_service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:shimmer/shimmer.dart';
@@ -40,8 +41,12 @@ class _SearchScreenState extends State<SearchScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     TextFormField(
-                      onChanged: (values1) {
-                        value.getQuery(values1);
+                      onChanged: (query) {
+                        if (query.isEmpty) {
+                          value.getQuery("Godfather");
+                        } else {
+                          value.getQuery(query);
+                        }
                       },
                       textCapitalization: TextCapitalization.words,
                       style: GoogleFonts.abhayaLibre(
@@ -72,7 +77,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     ),
                     SizedBox(height: 2.h),
                     Text("Films:",
-                        style: TextStyle(
+                        style: GoogleFonts.abhayaLibre(
                             color: Colors.white,
                             fontSize: 5.h,
                             fontWeight: FontWeight.w800)),
@@ -81,37 +86,105 @@ class _SearchScreenState extends State<SearchScreen> {
                       thickness: 0.5,
                     ),
                     SizedBox(
-                      height: 50.h,
+                      height: 80.h,
                       width: 100.w,
                       child: ListView.builder(
                         itemCount: value.searchlist?.results!.length,
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
                           return Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Container(
-                                  height: 5.h,
-                                  width: 5.w,
-                                  child: value.searchlist!.results![index]
-                                              .backdropPath !=
-                                          null
-                                      ? Image.network(
-                                          "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/${value.searchlist!.results![index].backdropPath}"
-                                              .toString())
-                                      : Text("Null foto")),
+                              !value.isSearchLoaded
+                                  ? Container(
+                                      height: 11.h,
+                                      width: 22.w,
+                                      margin: EdgeInsets.only(bottom: 3.h),
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        image: DecorationImage(
+                                            fit: BoxFit.fill,
+                                            image: value
+                                                        .searchlist!
+                                                        .results![index]
+                                                        .backdropPath ==
+                                                    null
+                                                ? NetworkImage(
+                                                    "https://static8.depositphotos.com/1009634/988/v/600/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg",
+                                                  )
+                                                : NetworkImage(
+                                                    "https://www.themoviedb.org/t/p/w600_and_h900_bestv2${value.searchlist!.results![index].posterPath}")),
+                                      ),
+                                    )
+                                  : Shimmer.fromColors(
+                                      child: Container(
+                                        height: 11.h,
+                                        width: 22.w,
+                                        margin: EdgeInsets.only(bottom: 3.h),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          shape: BoxShape.circle,
+                                        ),
+                                      ),
+                                      baseColor: Colors.grey.shade300,
+                                      highlightColor: Colors.white60),
                               SizedBox(
                                 width: 3.w,
                               ),
                               Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(value.searchlist!.results![index].title
-                                      .toString()),
+                                  SizedBox(
+                                    height: 2.4.h,
+                                    width: 54.w,
+                                    child: Text(
+                                      value.searchlist!.results![index].title
+                                          .toString(),
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 2.3.h,
+                                          fontWeight: FontWeight.w600,
+                                          overflow: TextOverflow.ellipsis),
+                                    ),
+                                  ),
                                   SizedBox(height: 1.h),
                                   Text(
-                                      "Overview:\n${value.searchlist?.results![index].overview}")
+                                      "Release Date:${value.searchlist!.results![index].releaseDate.toString()}",
+                                      style: GoogleFonts.abhayaLibre(
+                                          color: Colors.white,
+                                          fontSize: 2.3.h,
+                                          fontWeight: FontWeight.w600)),
+                                  Text(
+                                      "Rating: ${value.searchlist!.results![index].voteAverage.toString()} / 10",
+                                      style: GoogleFonts.aclonica(
+                                          color: Colors.white,
+                                          fontSize: 2.1.h,
+                                          fontWeight: FontWeight.w400))
                                 ],
-                              )
+                              ),
+                              SizedBox(
+                                width: 1,
+                              ),
+                              CircularPercentIndicator(
+                                radius: 5.w,
+                                lineWidth: .5.w,
+                                progressColor: Color(0xffFF1F8A),
+                                backgroundColor: Colors.black,
+                                percent: (value.searchlist!.results![index]
+                                            .voteAverage *
+                                        10) /
+                                    100,
+                                center: Center(
+                                    child: Text(
+                                  "${value.searchlist!.results![index].voteAverage.toStringAsFixed(1)}/10",
+                                  style: GoogleFonts.abhayaLibre(
+                                      color: Colors.white,
+                                      fontSize: 1.4.h,
+                                      fontWeight: FontWeight.w800),
+                                )),
+                              ),
                             ],
                           );
                         },
@@ -122,16 +195,14 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
             )
                 /* : Shimmer.fromColors(
-                    child: Center(
-                      child: Container(
-                        color: Colors.transparent,
-                        child: Text(
-                          "Loading...",
-                          style: GoogleFonts.aclonica(
-                              color: Colors.red,
-                              fontSize: 5.h,
-                              fontWeight: FontWeight.w900),
-                        ),
+                    child: Container(
+                      color: Colors.transparent,
+                      child: Text(
+                        "Loading...",
+                        style: GoogleFonts.aclonica(
+                            color: Colors.red,
+                            fontSize: 5.h,
+                            fontWeight: FontWeight.w900),
                       ),
                     ),
                     baseColor: Colors.yellow,

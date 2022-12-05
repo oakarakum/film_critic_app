@@ -322,7 +322,7 @@ class _FilmDetailScreenState extends State<FilmDetailScreen> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    Text("Categories",
+                                    Text("Genres",
                                         style: GoogleFonts.abhayaLibre(
                                             color: Colors.white,
                                             fontSize: 3.h,
