@@ -4,6 +4,7 @@ import 'package:film_critic_app/src/providers/detail_page_providers/detail_picke
 import 'package:film_critic_app/src/providers/detail_page_providers/film_credits_provider.dart';
 import 'package:film_critic_app/src/providers/homepage_providers/popular_films_provider.dart';
 import 'package:film_critic_app/src/providers/homepage_providers/top_rated_films_provider.dart';
+import 'package:film_critic_app/src/providers/search_page_providers/search_provider.dart';
 import 'package:film_critic_app/src/ui/pages/homepage_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -11,6 +12,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (context) => SearchProvider()),
     ChangeNotifierProvider(create: (context) => FilmCreditsProvider()),
     ChangeNotifierProvider(create: (context) => TopRatedFilmsProvider()),
     ChangeNotifierProvider(create: (context) => PopularFilmsProvider()),

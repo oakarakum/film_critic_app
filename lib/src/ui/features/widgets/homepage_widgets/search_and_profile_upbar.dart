@@ -52,8 +52,8 @@ class _SearchandProfileUpbarState extends State<SearchandProfileUpbar> {
             padding: EdgeInsets.only(top: 1.5.h),
             child: TextFormField(
                 onTap: () {
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) => SearchScreen()));
-
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SearchScreen()));
                 },
                 cursorHeight: 2.w,
                 cursorColor: Colors.white,

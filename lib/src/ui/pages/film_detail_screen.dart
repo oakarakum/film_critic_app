@@ -44,21 +44,23 @@ class _FilmDetailScreenState extends State<FilmDetailScreen> {
           toolbarHeight: 0,
           backgroundColor: Color(0xff303243),
         ),
-        body: Consumer<DetailPickedFilmsProvider>(builder: (context, value, child) {
-          return  value.isPickedFilmLoaded == true
-          
-         ? Container(
-          height: 100.h,
-          width: 100.w,
-          decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [
-            Color(0xff303243),
-            Color(0xff15151D),
-          ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
-          child: SingleChildScrollView(
-            child:  Column(
-              children: [
-                     Container(
+        body: Consumer<DetailPickedFilmsProvider>(
+          builder: (context, value, child) {
+            return value.isPickedFilmLoaded == true
+                ? Container(
+                    height: 100.h,
+                    width: 100.w,
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                            colors: [
+                          Color(0xff303243),
+                          Color(0xff15151D),
+                        ],
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter)),
+                    child: SingleChildScrollView(
+                        child: Column(children: [
+                      Container(
                         height: 50.h,
                         width: 100.w,
                         decoration: BoxDecoration(
@@ -100,277 +102,287 @@ class _FilmDetailScreenState extends State<FilmDetailScreen> {
                             ],
                           ),
                         ),
-                      )
-                   ,
-                Padding(
-                  //Resmin altının column'ı
-                  padding: EdgeInsets.only(left: 5.w, right: 5.w, top: 1.h),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CircularPercentIndicator(
-                            radius: 9.w,
-                            lineWidth: 1.w,
-                            arcBackgroundColor: Color(0xff303243),
-                            arcType: ArcType.FULL,
-                            progressColor: Color(0xffFF1F8A),
-                            percent:
-                                ( value.pickedfilms2.voteAverage * 10 ) / 100,
-                            center: Center(
-                                child: Text(
-                              "${value.pickedfilms2.voteAverage.toStringAsFixed(1)}/10",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 2.h,
-                                  fontWeight: FontWeight.w600),
-                            )),
-                          ),
-                          SizedBox(
-                            width: 2.75.w,
-                          ),
-                          FittedBox(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                      ),
+                      Padding(
+                        //Resmin altının column'ı
+                        padding:
+                            EdgeInsets.only(left: 5.w, right: 5.w, top: 1.h),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                SizedBox(
-                                  width: 69.w,
-                                  child: AutoSizeText(
-                                    "${value.pickedfilms2.title} ",
-                                    overflow: TextOverflow.ellipsis,
-                                    style: GoogleFonts.eagleLake(
+                                CircularPercentIndicator(
+                                  radius: 9.w,
+                                  lineWidth: 1.w,
+                                  arcBackgroundColor: Color(0xff303243),
+                                  arcType: ArcType.FULL,
+                                  progressColor: Color(0xffFF1F8A),
+                                  percent:
+                                      (value.pickedfilms2.voteAverage * 10) /
+                                          100,
+                                  center: Center(
+                                      child: Text(
+                                    "${value.pickedfilms2.voteAverage.toStringAsFixed(1)}/10",
+                                    style: TextStyle(
+                                        color: Colors.white,
                                         fontSize: 2.h,
-                                        fontWeight: FontWeight.w600,
-                                        color: Color(0xffFFFFFF)),
-                                  ),
+                                        fontWeight: FontWeight.w600),
+                                  )),
                                 ),
+                                SizedBox(
+                                  width: 2.75.w,
+                                ),
+                                FittedBox(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        width: 69.w,
+                                        child: AutoSizeText(
+                                          "${value.pickedfilms2.title} ",
+                                          overflow: TextOverflow.ellipsis,
+                                          style: GoogleFonts.eagleLake(
+                                              fontSize: 2.h,
+                                              fontWeight: FontWeight.w600,
+                                              color: Color(0xffFFFFFF)),
+                                        ),
+                                      ),
 
-                                //adadadad
-                                value.pickedfilms2.originalLanguage != "en"
-                                    ? Row(
-                                        // Ülkesinde farklı isimle yayınlanmışsa
+                                      //adadadad
+                                      value.pickedfilms2.originalLanguage !=
+                                              "en"
+                                          ? Row(
+                                              // Ülkesinde farklı isimle yayınlanmışsa
+                                              children: [
+                                                SizedBox(
+                                                  width: 60.w,
+                                                  child: Text(
+                                                      "Original Film Name: ${value.pickedfilms2.originalTitle} ",
+                                                      style:
+                                                          GoogleFonts.eagleLake(
+                                                              fontSize: 1.6.h,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              color: Color(
+                                                                  0xffFFFFFF))),
+                                                ),
+                                              ],
+                                            )
+                                          : SizedBox(height: 1.h),
+
+                                      Row(
                                         children: [
-                                          SizedBox(
-                                            width: 60.w,
-                                            child: Text(
-                                                "Original Film Name: ${value.pickedfilms2.originalTitle} ",
-                                                style: GoogleFonts.eagleLake(
-                                                    fontSize: 1.6.h,
-                                                    fontWeight: FontWeight.w600,
-                                                    color: Color(0xffFFFFFF))),
+                                          Text(
+                                            value.pickedfilms2.releaseDate
+                                                .toString(),
+                                            style: GoogleFonts.eagleLake(
+                                                fontSize: 2.h,
+                                                fontWeight: FontWeight.w600,
+                                                color: Color(0xffBBBBBB)),
                                           ),
+                                          SizedBox(
+                                            width: 2.w,
+                                          ),
+                                          Text(
+                                            "(${value.pickedfilms2.productionCompanies![0].originCountry})",
+                                            style: GoogleFonts.eagleLake(
+                                                fontSize: 2.h,
+                                                fontWeight: FontWeight.w600,
+                                                color: Color(0xffBBBBBB)),
+                                          )
                                         ],
                                       )
-                                    : SizedBox(height: 1.h),
-
-                                Row(
-                                  children: [
-                                    Text(
-                                      value.pickedfilms2.releaseDate.toString(),
-                                      style: GoogleFonts.eagleLake(
-                                          fontSize: 2.h,
-                                          fontWeight: FontWeight.w600,
-                                          color: Color(0xffBBBBBB)),
-                                    ),
-                                    SizedBox(
-                                      width: 2.w,
-                                    ),
-                                    Text(
-                                      "(${value.pickedfilms2.productionCompanies![0].originCountry})",
-                                      style: GoogleFonts.eagleLake(
-                                          fontSize: 2.h,
-                                          fontWeight: FontWeight.w600,
-                                          color: Color(0xffBBBBBB)),
-                                    )
-                                  ],
+                                    ],
+                                  ),
                                 )
                               ],
                             ),
-                          )
-                        ],
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(vertical: 1.h),
-                        child: Divider(
-                          color: Color(0xff000000),
-                          thickness: .1.h,
-                        ),
-                      ),
-                      Text(value.pickedfilms2.overview.toString(),
-                          style: GoogleFonts.eagleLake(
-                              fontSize: 1.5.h,
-                              fontWeight: FontWeight.w600,
-                              color: Color(0xffBBBBBB))),
-                      Padding(
-                        //Trailer button
-                        padding: EdgeInsets.only(top: 1.5.h),
-                        child: Container(
-                          height: 6.5.h,
-                          width: 100.w,
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                                colors: [
-                                  const Color(0xff8000FF),
-                                  const Color(0xff540BA1),
-                                ],
-                                begin: Alignment.topLeft,
-                                end: Alignment.topRight),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(right: 4.w),
-                                child: SvgPicture.asset("assets/play_icon.svg"),
+                            Padding(
+                              padding: EdgeInsets.symmetric(vertical: 1.h),
+                              child: Divider(
+                                color: Color(0xff000000),
+                                thickness: .1.h,
                               ),
-                              Padding(
-                                padding: EdgeInsets.only(right: 3.5.w),
-                                child: Text(
-                                  "Watch the Trailer",
-                                  style: GoogleFonts.abhayaLibre(
-                                      color: Colors.white,
-                                      fontSize: 3.h,
-                                      letterSpacing: 4,
-                                      fontWeight: FontWeight.w500),
+                            ),
+                            Text(value.pickedfilms2.overview.toString(),
+                                style: GoogleFonts.eagleLake(
+                                    fontSize: 1.5.h,
+                                    fontWeight: FontWeight.w600,
+                                    color: Color(0xffBBBBBB))),
+                            Padding(
+                              //Trailer button
+                              padding: EdgeInsets.only(top: 1.5.h),
+                              child: Container(
+                                height: 6.5.h,
+                                width: 100.w,
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                      colors: [
+                                        const Color(0xff8000FF),
+                                        const Color(0xff540BA1),
+                                      ],
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.topRight),
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(right: 4.w),
+                                      child: SvgPicture.asset(
+                                          "assets/play_icon.svg"),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(right: 3.5.w),
+                                      child: Text(
+                                        "Watch the Trailer",
+                                        style: GoogleFonts.abhayaLibre(
+                                            color: Colors.white,
+                                            fontSize: 3.h,
+                                            letterSpacing: 4,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 2.h),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text("Main Cast",
-                                style: GoogleFonts.abhayaLibre(
-                                    color: Colors.white,
-                                    fontSize: 3.h,
-                                    letterSpacing: 4,
-                                    fontWeight: FontWeight.w500)),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 2.h),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text("Main Cast",
+                                      style: GoogleFonts.abhayaLibre(
+                                          color: Colors.white,
+                                          fontSize: 3.h,
+                                          letterSpacing: 4,
+                                          fontWeight: FontWeight.w500)),
+                                ],
+                              ),
+                            ),
+                            Consumer<FilmCreditsProvider>(
+                                builder: (context, artistProvider, child) {
+                              return SizedBox(
+                                height: 13.h,
+                                width: 100.w,
+                                child: ListView.builder(
+                                  padding: EdgeInsets.zero,
+                                  itemCount: artistProvider
+                                      .castList.cast![0].name
+                                      .toString()
+                                      .length,
+                                  scrollDirection: Axis.horizontal,
+                                  shrinkWrap: true,
+                                  itemBuilder: (context, index) {
+                                    return Column(
+                                      children: [
+                                        Container(
+                                          //Oyuncuların foto gelecek buraya
+                                          height: 10.h,
+                                          width: 16.w,
+                                          margin: EdgeInsets.only(right: 5.w),
+                                          decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              border: Border.all(
+                                                  width: 0.6.w,
+                                                  color: Color(0xff303243)),
+                                              color: Color(0xff303243),
+                                              image: DecorationImage(
+                                                  image: NetworkImage(
+                                                    "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${artistProvider.castList.cast![index].profilePath}",
+                                                  ),
+                                                  fit: BoxFit.cover)),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(right: 5.w),
+                                          child: Text(
+                                              artistProvider
+                                                  .castList.cast![index].name
+                                                  .toString(),
+                                              style: GoogleFonts.eagleLake(
+                                                  fontSize: 1.5.h,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Color(0xffBBBBBB))),
+                                        )
+                                      ],
+                                    );
+                                  },
+                                ),
+                              );
+                            }),
+                            Padding(
+                                padding: EdgeInsets.only(top: 2.h),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text("Categories",
+                                        style: GoogleFonts.abhayaLibre(
+                                            color: Colors.white,
+                                            fontSize: 3.h,
+                                            letterSpacing: 4,
+                                            fontWeight: FontWeight.w500)),
+                                  ],
+                                )),
+                            Padding(
+                              padding: EdgeInsets.only(top: 1.h),
+                              child: SizedBox(
+                                //adad
+                                height: 5.h,
+                                width: 100.w,
+                                child: ListView.builder(
+                                  padding: EdgeInsets.zero,
+                                  itemCount: value.pickedfilms2.genres?.length,
+                                  scrollDirection: Axis.horizontal,
+                                  shrinkWrap: true,
+                                  itemBuilder: (context, index) {
+                                    return Container(
+                                      height: 3.h,
+                                      width: 20.w,
+                                      margin: EdgeInsets.only(right: 5.w),
+                                      decoration: BoxDecoration(
+                                          color: Color(0xff303243),
+                                          borderRadius:
+                                              BorderRadius.circular(5.w)),
+                                      child: Center(
+                                        child: Padding(
+                                          padding: EdgeInsets.only(top: .3.h),
+                                          child: Text(
+                                              value.pickedfilms2.genres![index]
+                                                  .name
+                                                  .toString(),
+                                              maxLines: 1,
+                                              style: GoogleFonts.eagleLake(
+                                                  fontSize: 1.h,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Color(0xffFFFFFF))),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                            )
                           ],
                         ),
                       ),
-                      Consumer<FilmCreditsProvider>(
-                          builder: (context, artistProvider, child) {
-                        return SizedBox(
-                          height: 13.h,
-                          width: 100.w,
-                          child: ListView.builder(
-                            padding: EdgeInsets.zero,
-                            itemCount: artistProvider.castList.cast![0].name
-                                .toString()
-                                .length,
-                            scrollDirection: Axis.horizontal,
-                            shrinkWrap: true,
-                            itemBuilder: (context, index) {
-                              return Column(
-                                children: [
-                                  Container(
-                                    //Oyuncuların foto gelecek buraya
-                                    height: 10.h,
-                                    width: 16.w,
-                                    margin: EdgeInsets.only(right: 5.w),
-                                    decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        border: Border.all(
-                                            width: 0.6.w,
-                                            color: Color(0xff303243)),
-                                        color: Color(0xff303243),
-                                        image: DecorationImage(
-                                            image: NetworkImage(
-                                              "https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${artistProvider.castList.cast![index].profilePath}",
-                                            ),
-                                            fit: BoxFit.cover)),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(right: 5.w),
-                                    child: Text(
-                                        artistProvider
-                                            .castList.cast![index].name
-                                            .toString(),
-                                        style: GoogleFonts.eagleLake(
-                                            fontSize: 1.5.h,
-                                            fontWeight: FontWeight.w600,
-                                            color: Color(0xffBBBBBB))),
-                                  )
-                                ],
-                              );
-                            },
-                          ),
-                        );
-                      }),
-                      Padding(
-                          padding: EdgeInsets.only(top: 2.h),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text("Categories",
-                                  style: GoogleFonts.abhayaLibre(
-                                      color: Colors.white,
-                                      fontSize: 3.h,
-                                      letterSpacing: 4,
-                                      fontWeight: FontWeight.w500)),
-                            ],
-                          )),
-                      Padding(
-                        padding: EdgeInsets.only(top: 1.h),
-                        child: SizedBox(
-                          //adad
-                          height: 5.h,
-                          width: 100.w,
-                          child: ListView.builder(
-                            padding: EdgeInsets.zero,
-                            itemCount: value.pickedfilms2.genres?.length,
-                            scrollDirection: Axis.horizontal,
-                            shrinkWrap: true,
-                            itemBuilder: (context, index) {
-                              return Container(
-                                height: 3.h,
-                                width: 20.w,
-                                margin: EdgeInsets.only(right: 5.w),
-                                decoration: BoxDecoration(
-                                    color: Color(0xff303243),
-                                    borderRadius: BorderRadius.circular(5.w)),
-                                child: Center(
-                                  child: Padding(
-                                    padding: EdgeInsets.only(top: .3.h),
-                                    child: Text(
-                                        value.pickedfilms2.genres![index].name
-                                            .toString(),
-                                        maxLines: 1,
-                                        style: GoogleFonts.eagleLake(
-                                            fontSize: 1.h,
-                                            fontWeight: FontWeight.w600,
-                                            color: Color(0xffFFFFFF))),
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-
-              ])
-            
-          ),
-        ): Shimmer.fromColors(child: Container(
-          height: 100.h,
-          width: 100.w,
-          color: Color(0xff303243),
-        ),
-         baseColor: Colors.grey,
-          highlightColor: Colors.white)
-        ;
-        },)
-        );
+                    ])),
+                  )
+                : Shimmer.fromColors(
+                    child: Container(
+                      height: 100.h,
+                      width: 100.w,
+                      color: Color(0xff303243),
+                    ),
+                    baseColor: Colors.grey,
+                    highlightColor: Colors.white);
+          },
+        ));
   }
 }
