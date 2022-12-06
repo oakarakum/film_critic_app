@@ -13,13 +13,13 @@ Future<SearchModel?> getSearchListService(String query) async {
     final response = await _dio2.get(
         "?api_key=1b258cebbacdf3b382888ffa108d4084&language=en-US&query=$query&page=1&include_adult=true");
     searchlist = SearchModel.fromJson(response.data);
-    print(response.data);
+    /* print(response.data);
     // Çalışıp çalışmadığını kontrol ediliyor
     if (response.statusCode == 200) {
       print("Search page çalışıyor");
     } else {
       print("Search page çalışmıyor.");
-    }
+    } */
     return searchlist;
   } catch (e) {
     // print(e);

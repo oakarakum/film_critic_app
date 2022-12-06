@@ -44,7 +44,7 @@ class _RandomFilmListListviewState extends State<RandomFilmListListview> {
                                         value.topfilms.results![index].id!,
                                   )));
                     },
-                    child: value.isAlbumTracksLoaded == true
+                    child: value.isAlbumTracksLoaded
                         ? Container(
                             height: 20.h,
                             width: 30.w,
@@ -61,12 +61,13 @@ class _RandomFilmListListviewState extends State<RandomFilmListListview> {
                             child: Container(
                               height: 20.h,
                               width: 30.w,
+                              margin: EdgeInsets.only(right: 4.5.w),
                               color: Colors.purple,
                             ),
                             baseColor: Colors.grey,
                             highlightColor: Colors.white),
                   ),
-                  value.isAlbumTracksLoaded == true
+                  value.isAlbumTracksLoaded
                       ? Container(
                           margin: EdgeInsets.only(top: 1.h),
                           height: 8.h,

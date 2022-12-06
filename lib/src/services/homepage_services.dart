@@ -51,12 +51,12 @@ Future<PopularFilmsModel?> getPopularFilmsServices() async {
           "page": 1
         });
     popularfilmlist = PopularFilmsModel.fromJson(response.data);
-    print(response.data);
+    /* print(response.data);
     if (response.statusCode == 200) {
       print("Popular Çalışıyor");
     } else {
       print("Çalışmıyor");
-    }
+    } */
     return popularfilmlist;
   } catch (e) {
     print(e);

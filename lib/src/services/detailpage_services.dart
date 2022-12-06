@@ -43,7 +43,7 @@ Future<FilmCreditsModel?> getFilmCrewService(int movie_id2) async {
         "$movie_id2/credits?api_key=1b258cebbacdf3b382888ffa108d4084&language=en-US");
 
     crewList = FilmCreditsModel.fromJson(response.data);
-    print(response.data);
+    // print(response.data);
     // Çalışıp çalışmadığını kontrol ediliyor
     if (response.statusCode == 200) {
       print("Çalışıyor");
