@@ -196,7 +196,14 @@ class _FilmDetailScreenState extends State<FilmDetailScreen> {
                                                   width: 2.w,
                                                 ),
                                                 Text(
-                                                  "(${value.pickedfilms2.productionCompanies![0].originCountry})",
+                                                  value
+                                                              .pickedfilms2
+                                                              .productionCompanies![
+                                                                  0]
+                                                              .originCountry ==
+                                                          ""
+                                                      ? ""
+                                                      : "(${value.pickedfilms2.productionCompanies![0].originCountry})",
                                                   style: GoogleFonts.eagleLake(
                                                       fontSize: 2.h,
                                                       fontWeight:

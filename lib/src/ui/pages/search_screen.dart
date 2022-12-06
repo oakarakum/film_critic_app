@@ -60,7 +60,8 @@ class _SearchScreenState extends State<SearchScreen> {
                             height: 80.h,
                             width: 100.w,
                             child: ListView.builder(
-                              itemCount: value.searchlist?.results!.length,
+                              itemCount:
+                                  value.searchlist?.results![0].title?.length,
                               shrinkWrap: true,
                               itemBuilder: (context, index) {
                                 return GestureDetector(
@@ -124,7 +125,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          value.isSearchLoaded != null
+                                          value.isSearchLoaded
                                               ? SizedBox(
                                                   height: 2.4.h,
                                                   width: 54.w,

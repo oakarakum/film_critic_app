@@ -5,6 +5,7 @@ import 'package:film_critic_app/src/providers/homepage_providers/top_rated_films
 import 'package:film_critic_app/src/ui/features/widgets/homepage_widgets/popular_movies_listview.dart';
 import 'package:film_critic_app/src/ui/features/widgets/homepage_widgets/random_filmlist_listview.dart';
 import 'package:film_critic_app/src/ui/features/widgets/homepage_widgets/search_and_profile_upbar.dart';
+import 'package:film_critic_app/src/ui/pages/more_top_rated_films_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -69,7 +70,11 @@ class _HomepageScreenState extends State<HomepageScreen> {
                                   fontWeight: FontWeight.w500)),
                           GestureDetector(
                             onTap: () {
-                              
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => MoreTopRatedFilms(),
+                                  ));
                             },
                             child: Text(
                               "See More",
@@ -88,12 +93,19 @@ class _HomepageScreenState extends State<HomepageScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text("Popular Films Films",
+                          Text("Popular Films",
                               style: GoogleFonts.abhayaLibre(
                                   color: Colors.white,
                                   fontSize: 3.h,
                                   fontWeight: FontWeight.w500)),
                           GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => MoreTopRatedFilms(),
+                                  ));
+                            },
                             child: Text(
                               "See More",
                               style: GoogleFonts.abhayaLibre(
