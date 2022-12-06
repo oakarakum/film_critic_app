@@ -36,7 +36,10 @@ class GenreListView extends StatelessWidget {
                         padding: EdgeInsets.only(top: .3.h),
                         child: FittedBox(
                           child: Text(
-                              value.pickedfilms2.genres![index].name.toString(),
+                              value.isPickedFilmLoaded
+                                  ? value.pickedfilms2.genres![index].name
+                                      .toString()
+                                  : "Loading...",
                               maxLines: 1,
                               style: GoogleFonts.eagleLake(
                                   fontSize: 2.h,

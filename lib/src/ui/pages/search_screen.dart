@@ -37,8 +37,7 @@ class _SearchScreenState extends State<SearchScreen> {
         ),
         body: Consumer<SearchProvider>(
           builder: (context, value, child) {
-            return value.isSearchLoaded
-                ? SingleChildScrollView(
+            return  SingleChildScrollView(
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 5.w),
                       child: Column(
@@ -59,7 +58,8 @@ class _SearchScreenState extends State<SearchScreen> {
                           SizedBox(
                             height: 80.h,
                             width: 100.w,
-                            child: ListView.builder(
+                            child: value.isSearchLoaded
+                            ? ListView.builder(
                               itemCount:
                                   value.searchlist?.results![0].title?.length,
                               shrinkWrap: true,
@@ -203,18 +203,29 @@ class _SearchScreenState extends State<SearchScreen> {
                                                 ),
                                               ),
                                               baseColor: Colors.grey.shade300,
-                                              highlightColor: Colors.white60)
+                                              highlightColor: Colors.white60
+                                              )
                                     ],
                                   ),
                                 );
                               },
+                            ): Shimmer.fromColors(child: 
+                            SizedBox(
+                              height: 80.h,
+                            width: 100.w,
+                            child: Center(
+                              child: Text("Loading...",style : TextStyle(color: Colors.white))),
                             ),
+                            baseColor: Colors.grey.shade300,
+                                              highlightColor: Colors.white60
+                            )
+                            ,
                           )
                         ],
                       ),
                     ),
-                  )
-                : Shimmer.fromColors(
+                  );
+                /* : Shimmer.fromColors(
                     child: Center(
                       child: Text(
                         "Loading...",
@@ -225,7 +236,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       ),
                     ),
                     baseColor: Colors.grey.shade400,
-                    highlightColor: Colors.white);
+                    highlightColor: Colors.white); */
           },
         ));
   }

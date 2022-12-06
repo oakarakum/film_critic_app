@@ -17,8 +17,7 @@ class _SearchbarWidgetState extends State<SearchbarWidget> {
   Widget build(BuildContext context) {
     return Consumer<SearchProvider>(
       builder: (context, value, child) {
-        return value.isSearchLoaded
-            ? TextFormField(
+        return  TextFormField(
                 onChanged: (query) {
                   if (query.isEmpty) {
                     value.getQuery("Godfather");
@@ -52,8 +51,8 @@ class _SearchbarWidgetState extends State<SearchbarWidget> {
                         borderRadius: BorderRadius.circular(10.w)),
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10.w))),
-              )
-            : Shimmer.fromColors(
+              );
+            /* : Shimmer.fromColors(
                 child: Container(
                   height: 6.h,
                   width: 100.w,
@@ -62,7 +61,7 @@ class _SearchbarWidgetState extends State<SearchbarWidget> {
                       borderRadius: BorderRadius.circular(10.w)),
                 ),
                 baseColor: Colors.grey.shade300,
-                highlightColor: Colors.white60);
+                highlightColor: Colors.white60); */
       },
     );
   }

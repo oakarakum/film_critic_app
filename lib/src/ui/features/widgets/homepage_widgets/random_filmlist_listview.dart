@@ -24,9 +24,10 @@ class _RandomFilmListListviewState extends State<RandomFilmListListview> {
   Widget build(BuildContext context) {
     return Consumer<TopRatedFilmsProvider>(
       builder: (context, value, widget) {
-        return SizedBox(
+        return Container(
           height: 29.h,
           width: 100.w,
+                margin: EdgeInsets.only(top: 1.h),
           child: ListView.builder(
             itemCount: 4,
             scrollDirection: Axis.horizontal,
@@ -35,7 +36,6 @@ class _RandomFilmListListviewState extends State<RandomFilmListListview> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      //print(value.topfilms.results![index].id!);
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -69,23 +69,23 @@ class _RandomFilmListListviewState extends State<RandomFilmListListview> {
                   ),
                   value.isAlbumTracksLoaded
                       ? Container(
-                          margin: EdgeInsets.only(top: 1.h),
+                          margin: EdgeInsets.only(top: 1.h,right: 4.w),
                           height: 8.h,
-                          width: 18.w,
+                          width: 22.w,
                           child: AutoSizeText(
                             maxLines: 3,
                             value.topfilms.results![index].title.toString(),
                             style: GoogleFonts.abhayaLibre(
                                 color: Colors.white,
-                                fontSize: 1.8.h,
+                                fontSize: 2.h,
                                 fontWeight: FontWeight.w500),
                           ),
                         )
                       : Shimmer.fromColors(
                           child: Container(
-                            margin: EdgeInsets.only(top: 1.h),
+                            margin: EdgeInsets.only(top: 1.h,right: 5.w),
                             height: 2.h,
-                            width: 18.w,
+                            width: 28.w,
                             color: Colors.purple,
                           ),
                           baseColor: Colors.grey,

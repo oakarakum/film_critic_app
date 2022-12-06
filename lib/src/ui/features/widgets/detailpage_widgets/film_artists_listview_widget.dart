@@ -54,9 +54,10 @@ class _FilmArtistsListviewWidgetState extends State<FilmArtistsListviewWidget> {
                       ),
                       Padding(
                         padding: EdgeInsets.only(right: 5.w),
-                        child: Text(
-                            artistProvider.castList.cast![index].name
-                                .toString(),
+                        child: Text( artistProvider.isCastListLoaded
+                            ? artistProvider.castList.cast![index].name.toString()
+                            : "Loading..."                                
+                                ,
                             style: GoogleFonts.eagleLake(
                                 fontSize: 1.5.h,
                                 fontWeight: FontWeight.w600,
