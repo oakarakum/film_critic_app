@@ -27,7 +27,7 @@ class _RandomFilmListListviewState extends State<RandomFilmListListview> {
         return Container(
           height: 29.h,
           width: 100.w,
-                margin: EdgeInsets.only(top: 1.h),
+          margin: EdgeInsets.only(top: 1.h),
           child: ListView.builder(
             itemCount: 4,
             scrollDirection: Axis.horizontal,
@@ -52,9 +52,11 @@ class _RandomFilmListListviewState extends State<RandomFilmListListview> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(.8.h),
                                 image: DecorationImage(
-                                    image: NetworkImage(
-                                        "https://image.tmdb.org/t/p/w600_and_h900_bestv2/${value.topfilms.results![index].posterPath!}"
-                                            .toString()),
+                                    image: NetworkImage(value.topfilms
+                                                .results![index].posterPath !=
+                                            null
+                                        ? "https://image.tmdb.org/t/p/w600_and_h900_bestv2/${value.topfilms.results![index].posterPath!}"
+                                        : "https://static8.depositphotos.com/1009634/988/v/600/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg"),
                                     fit: BoxFit.fitWidth)),
                           )
                         : Shimmer.fromColors(
@@ -69,7 +71,7 @@ class _RandomFilmListListviewState extends State<RandomFilmListListview> {
                   ),
                   value.isAlbumTracksLoaded
                       ? Container(
-                          margin: EdgeInsets.only(top: 1.h,right: 4.w),
+                          margin: EdgeInsets.only(top: 1.h, right: 4.w),
                           height: 8.h,
                           width: 22.w,
                           child: AutoSizeText(
@@ -83,7 +85,7 @@ class _RandomFilmListListviewState extends State<RandomFilmListListview> {
                         )
                       : Shimmer.fromColors(
                           child: Container(
-                            margin: EdgeInsets.only(top: 1.h,right: 5.w),
+                            margin: EdgeInsets.only(top: 1.h, right: 5.w),
                             height: 2.h,
                             width: 28.w,
                             color: Colors.purple,
