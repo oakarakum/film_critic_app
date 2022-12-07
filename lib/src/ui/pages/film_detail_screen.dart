@@ -68,10 +68,10 @@ class _FilmDetailScreenState extends State<FilmDetailScreen> {
                               width: 100.w,
                               decoration: BoxDecoration(
                                   image: DecorationImage(
-                                      image: NetworkImage(value.isPickedFilmLoaded
-                                          ?"https://www.themoviedb.org/t/p/w600_and_h900_bestv2${value.pickedfilms2.backdropPath}"
-                                          : "https://msimga.com/Content/images/grey-loader.gif"
-                                          ),
+                                      image: NetworkImage(value
+                                              .isPickedFilmLoaded
+                                          ? "https://www.themoviedb.org/t/p/w600_and_h900_bestv2${value.pickedfilms2.backdropPath}"
+                                          : "https://msimga.com/Content/images/grey-loader.gif"),
                                       fit: BoxFit.fill)),
                               child: Padding(
                                 padding:
@@ -186,10 +186,9 @@ class _FilmDetailScreenState extends State<FilmDetailScreen> {
                                             Row(
                                               children: [
                                                 Text(
-                                                  value.pickedfilms2.releaseDate
-                                                      .toString(),
+                                                  "Release Date: ${value.pickedfilms2.releaseDate.toString()}",
                                                   style: GoogleFonts.eagleLake(
-                                                      fontSize: 2.h,
+                                                      fontSize: 1.8.h,
                                                       fontWeight:
                                                           FontWeight.w600,
                                                       color: Color(0xffBBBBBB)),
@@ -228,21 +227,24 @@ class _FilmDetailScreenState extends State<FilmDetailScreen> {
                                     ),
                                   ),
                                   value.isPickedFilmLoaded
-                                  ? Text(value.pickedfilms2.overview.toString(),
-                                      style: GoogleFonts.eagleLake(
-                                          fontSize: 1.5.h,
-                                          fontWeight: FontWeight.w600,
-                                          color: Color(0xffBBBBBB))): Shimmer.fromColors(
-                                            child:Center(
-                                              child: Text("Loading...",
-                                      style: GoogleFonts.eagleLake(
-                                          fontSize: 1.5.h,
-                                          fontWeight: FontWeight.w600,
-                                          color: Color(0xffBBBBBB))),
-                                            ) ,
-                                           baseColor: Colors.grey,
-                                            highlightColor: Colors.white,)
-                                          ,
+                                      ? Text(
+                                          value.pickedfilms2.overview
+                                              .toString(),
+                                          style: GoogleFonts.eagleLake(
+                                              fontSize: 1.5.h,
+                                              fontWeight: FontWeight.w600,
+                                              color: Color(0xffBBBBBB)))
+                                      : Shimmer.fromColors(
+                                          child: Center(
+                                            child: Text("Loading...",
+                                                style: GoogleFonts.eagleLake(
+                                                    fontSize: 1.5.h,
+                                                    fontWeight: FontWeight.w600,
+                                                    color: Color(0xffBBBBBB))),
+                                          ),
+                                          baseColor: Colors.grey,
+                                          highlightColor: Colors.white,
+                                        ),
                                   Padding(
                                     //Trailer button
                                     padding: EdgeInsets.only(top: 1.5.h),
