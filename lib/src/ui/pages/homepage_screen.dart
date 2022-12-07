@@ -5,6 +5,7 @@ import 'package:film_critic_app/src/providers/homepage_providers/top_rated_films
 import 'package:film_critic_app/src/ui/features/widgets/homepage_widgets/popular_movies_listview.dart';
 import 'package:film_critic_app/src/ui/features/widgets/homepage_widgets/random_filmlist_listview.dart';
 import 'package:film_critic_app/src/ui/features/widgets/homepage_widgets/search_and_profile_upbar.dart';
+import 'package:film_critic_app/src/ui/pages/more_popular_films_screen.dart';
 import 'package:film_critic_app/src/ui/pages/more_top_rated_films_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -103,7 +104,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => MoreTopRatedFilms(),
+                                    builder: (context) => MorePopularFilms(),
                                   ));
                             },
                             child: Text(

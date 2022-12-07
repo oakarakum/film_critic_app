@@ -1,21 +1,21 @@
-// ignore_for_file: prefer_const_constructors, sort_child_properties_last
+// ignore_for_file: sort_child_properties_last, prefer_const_constructors
 
-import 'package:film_critic_app/src/providers/homepage_providers/popular_films_provider.dart';
-import 'package:film_critic_app/src/providers/homepage_providers/top_rated_films_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:shimmer/shimmer.dart';
 
-class MoreTopRatedFilms extends StatefulWidget {
-  const MoreTopRatedFilms({super.key});
+import '../../providers/homepage_providers/popular_films_provider.dart';
+
+class MorePopularFilms extends StatefulWidget {
+  const MorePopularFilms({super.key});
 
   @override
-  State<MoreTopRatedFilms> createState() => _MoreTopRatedFilmsState();
+  State<MorePopularFilms> createState() => _MorePopularFilmsState();
 }
 
-class _MoreTopRatedFilmsState extends State<MoreTopRatedFilms> {
+class _MorePopularFilmsState extends State<MorePopularFilms> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,13 +24,13 @@ class _MoreTopRatedFilmsState extends State<MoreTopRatedFilms> {
         toolbarHeight: 6.5.h,
         elevation: 0,
         title: Text(
-          "Top Rated Films",
+          "Popular Films",
           style:
               GoogleFonts.aclonica(fontSize: 2.h, fontWeight: FontWeight.w700),
         ),
       ),
       body: SingleChildScrollView(
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,17 +48,18 @@ class _MoreTopRatedFilmsState extends State<MoreTopRatedFilms> {
                       crossAxisSpacing: 2.h,
                       mainAxisSpacing: 4.w),
                   itemBuilder: (context, index) {
-                    return Consumer<TopRatedFilmsProvider>(
+                    return Consumer<PopularFilmsProvider>(
                       builder: (context, value, child) {
-                        return value.topfilms.results![index].originalTitle !=
+                        return value.popularfilms!.results![index]
+                                    .originalTitle !=
                                 null
                             ? Container(
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
                                         fit: BoxFit.cover,
                                         image: NetworkImage(value
-                                                .isAlbumTracksLoaded
-                                            ? "https://www.themoviedb.org/t/p/w600_and_h900_bestv2${value.topfilms!.results![index].posterPath}"
+                                                .isPopularFilmsLoaded
+                                            ? "https://www.themoviedb.org/t/p/w600_and_h900_bestv2${value.popularfilms!.results![index].posterPath}"
                                             : "https://static8.depositphotos.com/1009634/988/v/600/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg"))),
                               )
                             : Shimmer.fromColors(
