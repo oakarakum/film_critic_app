@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last
 
-import 'package:film_critic_app/src/providers/homepage_providers/popular_films_provider.dart';
 import 'package:film_critic_app/src/providers/homepage_providers/top_rated_films_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -58,7 +57,7 @@ class _MoreTopRatedFilmsState extends State<MoreTopRatedFilms> {
                                         fit: BoxFit.cover,
                                         image: NetworkImage(value
                                                 .isAlbumTracksLoaded
-                                            ? "https://www.themoviedb.org/t/p/w600_and_h900_bestv2${value.topfilms!.results![index].posterPath}"
+                                            ? "https://www.themoviedb.org/t/p/w600_and_h900_bestv2${value.topfilms.results![index].posterPath}"
                                             : "https://static8.depositphotos.com/1009634/988/v/600/depositphotos_9883921-stock-illustration-no-user-profile-picture.jpg"))),
                               )
                             : Shimmer.fromColors(

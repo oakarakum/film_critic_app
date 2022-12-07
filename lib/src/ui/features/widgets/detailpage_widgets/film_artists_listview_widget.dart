@@ -26,8 +26,7 @@ class _FilmArtistsListviewWidgetState extends State<FilmArtistsListviewWidget> {
         width: 100.w,
         child: ListView.builder(
           padding: EdgeInsets.zero,
-          itemCount:
-              artistProvider.castList.cast![0].character.toString().length,
+          itemCount: artistProvider.castList.cast!.length,
           scrollDirection: Axis.horizontal,
           shrinkWrap: true,
           itemBuilder: (context, index) {
@@ -54,10 +53,11 @@ class _FilmArtistsListviewWidgetState extends State<FilmArtistsListviewWidget> {
                       ),
                       Padding(
                         padding: EdgeInsets.only(right: 5.w),
-                        child: Text( artistProvider.isCastListLoaded
-                            ? artistProvider.castList.cast![index].name.toString()
-                            : "Loading..."                                
-                                ,
+                        child: Text(
+                            artistProvider.isCastListLoaded
+                                ? artistProvider.castList.cast![index].name
+                                    .toString()
+                                : "Loading...",
                             style: GoogleFonts.eagleLake(
                                 fontSize: 1.5.h,
                                 fontWeight: FontWeight.w600,
